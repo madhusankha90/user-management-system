@@ -38,5 +38,5 @@ A user-friendly system for managing users, built with the MERN stack (MongoDB, E
 ### Clone the repository
 
 ```bash
-git clone https://github.com/your-username/user-management-system.git
-cd user-management-system
+git clone https://github.com/madhusankha90/user-management-system.git
+
