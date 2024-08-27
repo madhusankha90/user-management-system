@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const users = [
-  { id: 1, name: 'Lindsay Walton', title: 'Front-end Developer', email: 'lindsay.walton@example.com' },
-  { id: 2, name: 'Courtney Henry', title: 'Designer', email: 'courtney.henry@example.com' },
-  { id: 3, name: 'Tom Cook', title: 'Director of Product', email: 'tom.cook@example.com' },
-  { id: 4, name: 'Whitney Francis', title: 'Copywriter', email: 'whitney.francis@example.com' },
-  { id: 5, name: 'Leonard Krasner', title: 'Senior Designer', email: 'leonard.krasner@example.com' },
-  { id: 6, name: 'Floyd Miles', title: 'Principal Designer', email: 'floyd.miles@example.com' },
-  
-];
+import { UserContext } from './UserContext';
 
 const UserTable = () => {
+  const { users, updateUser, deleteUser } = useContext(UserContext);
+  const navigate = useNavigate();
+  const [editingUser, setEditingUser] = useState(null);
 
-    const usenavigate = useNavigate();
+  const handleUpdateClick = (user) => {
+    setEditingUser(user);
+    navigate('/userform', { state: { user, isEdit: true } });
+  };
+
+  const handleDeleteClick = (id) => {
+    deleteUser(id);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 flex items-center justify-center p-8">
@@ -23,7 +24,7 @@ const UserTable = () => {
           Manage all the users in your account including their details and actions.
         </p>
         <div className="flex justify-end mb-4">
-          <button className="bg-blue-500 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-600 transition-transform transform hover:scale-105" onClick={()=>usenavigate('/userform')}>
+          <button className="bg-blue-500 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-600 transition-transform transform hover:scale-105" onClick={() => navigate('/userform')}>
             Add User
           </button>
         </div>
@@ -47,10 +48,10 @@ const UserTable = () => {
                     <td className="px-6 py-4 text-sm text-gray-800">{user.title}</td>
                     <td className="px-6 py-4 text-sm text-gray-800">{user.email}</td>
                     <td className="px-6 py-4 text-sm flex space-x-2">
-                      <button className="bg-yellow-500 text-white px-4 py-2 rounded-lg shadow hover:bg-yellow-600 transition-transform transform hover:scale-105">
+                      <button className="bg-yellow-500 text-white px-4 py-2 rounded-lg shadow hover:bg-yellow-600 transition-transform transform hover:scale-105" onClick={() => handleUpdateClick(user)}>
                         Update
                       </button>
-                      <button className="bg-red-500 text-white px-4 py-2 rounded-lg shadow hover:bg-red-600 transition-transform transform hover:scale-105">
+                      <button className="bg-red-500 text-white px-4 py-2 rounded-lg shadow hover:bg-red-600 transition-transform transform hover:scale-105" onClick={() => handleDeleteClick(user.id)}>
                         Delete
                       </button>
                     </td>

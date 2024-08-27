@@ -1,14 +1,24 @@
-import React, { useState,useNavigate } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { UserContext } from './UserContext';
 
 const UserForm = () => {
+  const navigate = useNavigate();
+  const { addUser, updateUser } = useContext(UserContext);
+  const location = useLocation();
+  const { user: initialUser, isEdit } = location.state || {};
 
- 
-    
   const [formData, setFormData] = useState({
     name: '',
     title: '',
     email: ''
   });
+
+  useEffect(() => {
+    if (isEdit && initialUser) {
+      setFormData(initialUser);
+    }
+  }, [initialUser, isEdit]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,13 +27,17 @@ const UserForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('User Added:', formData);
+    if (isEdit) {
+      updateUser(initialUser.id, formData);
+    } else {
+      addUser(formData);
+    }
+    navigate('/usertable');
   };
 
   return (
     <div className="max-w-lg mx-auto p-8 bg-white shadow-lg rounded-lg">
-      <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Add New User</h2>
+      <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">{isEdit ? 'Edit User' : 'Add New User'}</h2>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
@@ -64,8 +78,8 @@ const UserForm = () => {
         <div className="flex justify-end">
           <button 
             type="submit" 
-            className="bg-blue-500 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-600 transition-transform transform hover:scale-105" >
-            Add User
+            className="bg-blue-500 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-600 transition-transform transform hover:scale-105">
+            {isEdit ? 'Update User' : 'Add User'}
           </button>
         </div>
       </form>
