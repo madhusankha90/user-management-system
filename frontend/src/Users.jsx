@@ -1,9 +1,10 @@
-import UserForm from "./UserForm";
 
+import React from 'react';
 const Users = () =>{
 
+
     return(
-        <UserForm/>
+        <div></div>
     );
 
 }
