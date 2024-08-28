@@ -1,9 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const UserTable = ({rows}) => {
-
-
+const UserTable = ({ rows }) => {
   const navigate = useNavigate();
   return (
     <div className="container mx-auto p-6 max-w-lg bg-white rounded-lg shadow-lg">
@@ -14,7 +12,10 @@ const UserTable = ({rows}) => {
           <p className="text-gray-600">Manage your users and their details below.</p>
         </div>
         {/* Add User Button */}
-        <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md shadow-md transition duration-200 ease-in-out transform hover:scale-105" onClick={()=>navigate('/userform')}>
+        <button
+          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md shadow-md transition duration-200 ease-in-out transform hover:scale-105"
+          onClick={() => navigate("/userform")}
+        >
           Add User
         </button>
       </div>
@@ -26,18 +27,26 @@ const UserTable = ({rows}) => {
             <tr>
               <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm font-semibold text-gray-700">ID</th>
               <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm font-semibold text-gray-700">Name</th>
-              <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm font-semibold text-gray-700">Action</th>
+              {/* Centered Action Header */}
+              <th className="px-6 py-3 border-b-2 border-gray-300 text-center text-sm font-semibold text-gray-700">Action</th>
             </tr>
           </thead>
-            
+
           <tbody>
-          {rows.map((row) => (
+            {rows.map((row) => (
               <tr key={row.id}>
                 <td className="px-6 py-4 border-b border-gray-300 text-sm text-gray-700">{row.id}</td>
                 <td className="px-6 py-4 border-b border-gray-300 text-sm text-gray-700">{row.name}</td>
-                <td className="px-6 py-4 border-b border-gray-300 text-sm text-gray-700">
-                  {/* Example action button */}
-                  <button className="text-blue-500 hover:text-blue-700">Edit</button>
+                {/* Centered Action Buttons */}
+                <td className="px-6 py-4 border-b border-gray-300 text-sm text-gray-700 text-center">
+                  <div className="flex justify-center space-x-2">
+                    <button className="bg-blue-500 text-white font-semibold py-1 px-4 rounded-md shadow-md hover:bg-blue-600 hover:shadow-lg transition duration-200 ease-in-out transform hover:scale-105">
+                      Update
+                    </button>
+                    <button className="bg-red-500 text-white font-semibold py-1 px-4 rounded-md shadow-md hover:bg-red-600 hover:shadow-lg transition duration-200 ease-in-out transform hover:scale-105">
+                      Delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

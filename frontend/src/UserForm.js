@@ -1,4 +1,17 @@
+import React,{useState} from "react";
+
 const UserForm = (props) => {
+
+  const [id, setId] = useState();
+  const [name, setName] = useState();
+
+  const handleId = (event) => {
+      setId(event.target.value);
+  }
+  const handleName = (event) =>{
+    setName(event.target.value);
+  }
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       {/* Form Container */}
@@ -12,11 +25,15 @@ const UserForm = (props) => {
         {/* Form to Add User */}
         <form className="flex flex-col space-y-4">
           <input
+            value={id}
+            onChange={handleId}
             type="text"
             placeholder="Enter ID"
             className="p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <input
+          value={name}
+          onChange={handleName}
             type="text"
             placeholder="Enter Name"
             className="p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
