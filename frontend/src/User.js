@@ -1,8 +1,12 @@
 import UserForm from "./UserForm";
+import UserTable from "./UserTable";
+import users from './userData'
 
 const User = () =>{
     return(
-        <UserForm/>
+        <div>
+            <UserTable rows={users}/>
+        </div>
     );
 }
 

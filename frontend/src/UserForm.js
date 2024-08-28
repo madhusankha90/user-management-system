@@ -1,12 +1,14 @@
 const UserForm = (props) => {
-    return (
-      <div className="container mx-auto p-6 max-w-lg bg-white rounded-lg shadow-lg">
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      {/* Form Container */}
+      <div className="p-6 w-full max-w-sm bg-white rounded-lg shadow-lg">
         {/* Form Title and Description */}
-        <div className="mb-6 text-center">
+        <div className="mb-4 text-center">
           <h2 className="text-2xl font-bold text-gray-800 mb-2">Add New User</h2>
-          <p className="text-gray-600">Fill in the details below to add a new user to the system.</p>
+          <p className="text-gray-600 text-sm">Fill in the details below to add a new user to the system.</p>
         </div>
-  
+
         {/* Form to Add User */}
         <form className="flex flex-col space-y-4">
           <input
@@ -27,8 +29,8 @@ const UserForm = (props) => {
           </button>
         </form>
       </div>
-    );
-  };
-  
-  export default UserForm;
-  
+    </div>
+  );
+};
+
+export default UserForm;
