@@ -8,3 +8,5 @@ const users =  [
         name: "Jagath"
     }
 ]
+
+export default users;
