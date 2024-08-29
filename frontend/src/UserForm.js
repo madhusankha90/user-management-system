@@ -1,6 +1,11 @@
 import React,{useState} from "react";
+import axios, { Axios } from 'axios';
 
-const UserForm = (props) => {
+const UserForm = ({rows}) => {
+
+  const addUser = () => {
+    axios.post('http://localhost:5000/api/createuser')
+  }
 
   const [id, setId] = useState();
   const [name, setName] = useState();

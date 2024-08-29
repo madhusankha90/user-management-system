@@ -6,7 +6,7 @@ const User = () =>{
 
     const [users, setUsers] = useState([]);
 
-    useEffect(()=>{
+    useEffect(()=>{   
         getUsers();
     },[]);
 
