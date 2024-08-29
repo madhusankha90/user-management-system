@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors')
 const app = express();
-
+const router = require('./router')
 
 
 const port = process.env.PORT || 5000;
@@ -24,6 +24,9 @@ const connect = async ()=>{
     
 }
 connect();
+
+
+app.use('/api',router); 
 
 app.listen(port,()=>{
     console.log(`server is running on port ${port}`)

@@ -1,23 +1,50 @@
-const users = [
-    {
-        id:1,
-        name:"Jagath"
+const User = require("./model");
 
-    },
-    {
-        id:2,
-        name:"Nimal"
-    }
-];
+const getUsers = (req, res, next) => { //retrieve
+  User.find()
+    .then((response) => {
+      res.json({ response });
+    })
+    .catch((error) => {
+      res.json({ error });
+    });
+};
 
-const getUsers = (cb) => {
-    cb(users);
+const addUser = (req, res, next) => {
+  const user = new User({
+    id: req.body.id,   //const {id,name}  = req.body
+    name: req.body.name,
+  });
+  user.save()
+    .then((response) => {
+      res.json({ response });
+    })
+    .catch((error) => {
+      res.json({ error });
+    });
+};
+
+const updateUser = (req,res,next) => {
+    const {id,name} = req.body;
+    User.updateOne({id:id},{$set:{name:name}})
+    .then(response =>{
+        res.json({ response})
+    })
+    .catch(error=>{
+        res.json({error})
+    })
 }
 
-const getUserbyId = (id,cb) => {
-    const user = users.find(user=>user.id == id);
-    cb(user);
+const deleteUser = (req,res,next) => {
+    const {id} = req.body;
+    User.deleteOne({id:id})
+    .then(response =>{
+        res.json({ response})
+    })
+    .catch(error=>{
+        res.json({message:error})
+    })
 }
 
-exports.getUsers = getUsers;
-exports.getUserbyId = getUserbyId;
+
+module.exports = {getUsers,addUser,updateUser,deleteUser};
