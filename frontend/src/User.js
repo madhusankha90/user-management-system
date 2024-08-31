@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import UserTable from "./UserTable";
 import axios, { Axios } from 'axios';
+import UserUpdate from "./UserUpdate";
 
 const User = () =>{
 

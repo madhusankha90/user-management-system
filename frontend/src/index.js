@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import User from './User';
 import UserForm from './UserForm';
+import UserUpdate from './UserUpdate';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,6 +15,8 @@ root.render(
     <Route path='/' element={<App/>}/>
     <Route path='/user' element={<User/>}/>
     <Route path='/userform' element={<UserForm/>}/>
+    <Route path="/userupdate" element={<UserUpdate />}/>
+
   </Routes>
 
   </BrowserRouter>
