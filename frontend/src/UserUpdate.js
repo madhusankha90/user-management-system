@@ -3,25 +3,8 @@ import axios from 'axios';
 
 const UserUpdate = ({getUsers}) => {
 
-    const [submitted, setSubmitted] = useState();
 
-    const updateUser = (data)=> {
-        setSubmitted(true);
-
-        const payload = {
-            id: data.id,
-            name: data.name,
-        }
-
-        axios.put('http://localhost:5000/api/updateuser', payload)
-        .then(() => {
-          getUsers();
-          setSubmitted(false);
-        })
-        .catch((error) => {
-          console.error("Axios Error:", error);
-        });
-    }
+    
 
   return (
     <div class="flex justify-center items-center min-h-screen bg-gray-100">
