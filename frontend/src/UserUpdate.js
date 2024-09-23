@@ -3,6 +3,8 @@ import axios from 'axios';
 
 const UserUpdate = ({getUsers}) => {
 
+  const [id, setId] = useState();
+
 
     
 
@@ -16,6 +18,12 @@ const UserUpdate = ({getUsers}) => {
     <form>
       
       <div class="mb-4">
+      <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Id:</label>
+        <input
+          type="text"
+          id="name"
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
         <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Name:</label>
         <input
           type="text"

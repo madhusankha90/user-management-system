@@ -8,7 +8,7 @@ const getUsers = (req, res, next) => { //retrieve
     .catch((error) => {
       res.json({ error });
     });
-};
+};c
 
 const addUser = (req, res, next) => {
   const user = new User({
